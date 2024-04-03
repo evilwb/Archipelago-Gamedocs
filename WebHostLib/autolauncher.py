@@ -16,7 +16,7 @@ from .locker import Locker, AlreadyRunningException
 
 def launch_room(room: Room, config: dict):
     # requires db_session!
-    if room.last_activity >= datetime.utcnow() - timedelta(seconds=room.timeout):
+    if room.last_activity >= datetime.utcnow() - timedelta(seconds=room.timeout) or config["ROOM_TIMEOUT"] is False:
         multiworld = multiworlds.get(room.id, None)
         if not multiworld:
             multiworld = MultiworldInstance(room, config)
@@ -56,6 +56,17 @@ def launch_generator(pool: multiprocessing.pool.Pool, generation: Generation):
 def init_db(pony_config: dict):
     db.bind(**pony_config)
     db.generate_mapping()
+
+
+def singlehost(config: dict):
+    with db_session:
+        rooms = select(
+            room for room in Room)
+        if len(rooms) > 1:
+            logging.error("Starting server with singlehost but there are multiple rooms")
+            assert False
+        for room in rooms:
+            launch_room(room, config)
 
 
 def autohost(config: dict):

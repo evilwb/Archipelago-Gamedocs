@@ -51,6 +51,11 @@ app.config["PONY"] = {
 app.config["MAX_ROLL"] = 20
 app.config["CACHE_TYPE"] = "SimpleCache"
 app.config["HOST_ADDRESS"] = ""
+# Launch by opening the first available room found in the DB. Should be used when you know you are only
+# running one room or less.
+app.config["SINGLE_ROOM"] = False
+# If rooms will automatically close after a timeout period
+app.config["ROOM_TIMEOUT"] = True
 
 cache = Cache()
 Compress(app)
