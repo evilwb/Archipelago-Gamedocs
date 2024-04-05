@@ -56,8 +56,8 @@ def get_meta(options_source: dict, race: bool = False) -> Dict[str, Union[List[s
     }
 
 
-@app.route('/generate', methods=['GET', 'POST'])
-@app.route('/generate/<race>', methods=['GET', 'POST'])
+#@app.route('/generate', methods=['GET', 'POST'])
+#@app.route('/generate/<race>', methods=['GET', 'POST'])
 def generate(race=False):
     if request.method == 'POST':
         # check if the post request has the file part
@@ -180,7 +180,7 @@ def gen_game(gen_options: dict, meta: Optional[Dict[str, Any]] = None, owner=Non
         raise
 
 
-@app.route('/wait/<suuid:seed>')
+#@app.route('/wait/<suuid:seed>')
 def wait_seed(seed: UUID):
     seed_id = seed
     seed = Seed.get(id=seed_id)

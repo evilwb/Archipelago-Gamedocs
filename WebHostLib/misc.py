@@ -31,7 +31,7 @@ def page_not_found(err):
 
 
 # Start Playing Page
-@app.route('/start-playing')
+#@app.route('/start-playing')
 @cache.cached()
 def start_playing():
     return render_template(f"startPlaying.html")
@@ -92,13 +92,13 @@ def tutorial_landing():
     return render_template("tutorialLanding.html")
 
 
-@app.route('/faq/<string:lang>/')
+#@app.route('/faq/<string:lang>/')
 @cache.cached()
 def faq(lang):
     return render_template("faq.html", lang=lang)
 
 
-@app.route('/glossary/<string:lang>/')
+#@app.route('/glossary/<string:lang>/')
 @cache.cached()
 def terms(lang):
     return render_template("glossary.html", lang=lang)
@@ -172,7 +172,7 @@ def favicon():
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
-@app.route('/discord')
+#@app.route('/discord')
 def discord():
     return redirect("https://discord.gg/8Z65BR2")
 
