@@ -117,7 +117,7 @@ if __name__ == "__main__":
     logging.basicConfig(format='[%(asctime)s] %(message)s', level=logging.INFO)
 
     from WebHostLib.lttpsprites import update_sprites_lttp
-    from WebHostLib.autolauncher import autohost, autogen, singlehost
+    from WebHostLib.autolauncher import autohost, autogen
     from WebHostLib.options import create as create_options_files
 
     try:
@@ -129,10 +129,7 @@ if __name__ == "__main__":
     create_options_files()
     create_ordered_tutorials_file()
     if app.config["SELFLAUNCH"]:
-        if app.config["SINGLE_ROOM"]:
-            singlehost(app.config)
-        else:
-            autohost(app.config)
+        autohost(app.config)
     if app.config["SELFGEN"]:
         autogen(app.config)
     if app.config["SELFHOST"]:  # using WSGI, you just want to run get_app()
