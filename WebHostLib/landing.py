@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime
 
-from flask import redirect, url_for, Response
+from flask import redirect, url_for
 from pony.orm import db_session, select
 
 from WebHostLib import app, cache
@@ -21,10 +21,3 @@ def get_first_room_tracker():
 #     rooms = count(room for room in Room if room.creation_time >= datetime.utcnow() - timedelta(days=7))
 #     seeds = count(seed for seed in Seed if seed.creation_time >= datetime.utcnow() - timedelta(days=7))
 #     return render_template("landing.html", rooms=rooms, seeds=seeds)
-
-
-@app.route('/robots.txt')
-def noindex():
-    r = Response(response="User-Agent: *\nDisallow: /\n", status=200, mimetype="text/plain")
-    r.headers["Content-Type"] = "text/plain; charset=utf-8"
-    return r
