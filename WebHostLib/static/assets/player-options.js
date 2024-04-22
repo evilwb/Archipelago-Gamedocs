@@ -29,8 +29,10 @@ window.addEventListener('load', () => {
 
     // Event listeners
     document.getElementById('export-options').addEventListener('click', () => exportOptions());
-    document.getElementById('generate-race').addEventListener('click', () => generateGame(true));
-    document.getElementById('generate-game').addEventListener('click', () => generateGame());
+    
+    // Not needed
+    //document.getElementById('generate-race').addEventListener('click', () => generateGame(true));
+    //document.getElementById('generate-game').addEventListener('click', () => generateGame());
 
     // Name input field
     const playerOptions = JSON.parse(localStorage.getItem(gameName));
