@@ -1,6 +1,6 @@
 # Supported Unofficial Games
 
-* Yu-Gi-Oh! Forbidden Memories - [v2.0.0](https://github.com/sg4e/Archipelago/releases/tag/v2.0.0)
+* Castlevania: Symphony of the Night - [Beta 0.60](https://github.com/fdelduque/Archipelago/releases/tag/b060)
 * Inscryption - [v0.2.0b2](https://github.com/DrBibop/Archipelago_Inscryption/releases/tag/beta6)
 * Kingdom Hearts 1 Final Mix - [v1.0.0](https://github.com/gaithernOrg/KH1FM-AP/releases/tag/1.0.0)
 * Mario Kart 64 - [0.2.1b](https://github.com/Edsploration/MK64-Archipelago/releases/tag/mk64%2F0.2.1b)
@@ -8,5 +8,5 @@
 * Mega Man X3 - [v0.2.5](https://github.com/TheLX5/Archipelago/releases/tag/mmx3-v0.2.5)
 * Paper Mario 64 - [v0.3.1](https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.3.1)
 * Super Metroid Map Rando - v103
-* Castlevania: Symphony of the Night - [Beta 0.60](https://github.com/fdelduque/Archipelago/releases/tag/b060)
 * TLoZ Wind Waker - [v2.3.2](https://github.com/tanjo3/tww_apworld/releases/tag/v2.3.2)
+* Yu-Gi-Oh! Forbidden Memories - [v2.0.0](https://github.com/sg4e/Archipelago/releases/tag/v2.0.0)
