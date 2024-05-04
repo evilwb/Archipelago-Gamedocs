@@ -7,6 +7,7 @@
 * Mega Man X - [v0.1.4](https://github.com/TheLX5/Archipelago/releases/tag/mmx-v0.1.4)
 * Mega Man X3 - [v0.2.5](https://github.com/TheLX5/Archipelago/releases/tag/mmx3-v0.2.5)
 * Paper Mario 64 - [v0.3.1](https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.3.1)
+* Risk of Rain - [v0.3](https://github.com/studkid/RoR_Archipelago/releases/tag/v0.3)
 * Super Metroid Map Rando - v103
 * TLoZ Wind Waker - [v2.3.2](https://github.com/tanjo3/tww_apworld/releases/tag/v2.3.2)
 * Yu-Gi-Oh! Forbidden Memories - [v2.0.0](https://github.com/sg4e/Archipelago/releases/tag/v2.0.0)
