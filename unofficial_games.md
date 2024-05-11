@@ -1,6 +1,7 @@
 # Supported Unofficial Games
 
 * Castlevania: Symphony of the Night - [Beta 0.60](https://github.com/fdelduque/Archipelago/releases/tag/b060)
+* Hades - [0.10.1](https://github.com/NaixGames/Polycosmos/releases/tag/0.10.1)
 * Inscryption - [v0.2.0b2](https://github.com/DrBibop/Archipelago_Inscryption/releases/tag/beta6)
 * Kingdom Hearts 1 Final Mix - [v1.0.0](https://github.com/gaithernOrg/KH1FM-AP/releases/tag/1.0.0)
 * Mario Kart 64 - [0.2.1b](https://github.com/Edsploration/MK64-Archipelago/releases/tag/mk64%2F0.2.1b)
