@@ -51,9 +51,7 @@ class DarkSouls3World(World):
     game: str = "Dark Souls III"
     options: DarkSouls3Options
     options_dataclass = DarkSouls3Options
-    topology_present: bool = True
     web = DarkSouls3Web()
-    data_version = 9
     base_id = 100000
     required_client_version = (0, 4, 2)
     item_name_to_id = {data.name: data.ap_code for data in item_dictionary.values()}
@@ -72,6 +70,16 @@ class DarkSouls3World(World):
     
     This is used to determine where the Storm Ruler can be placed.
     """
+
+    all_excluded_locations: Set[str] = set()
+    """This is the same value as `self.options.exclude_locations.value` initially, but if
+    `options.exclude_locations` gets cleared due to `excluded_locations: unnecessary` this still
+    holds the old locations so we can ensure they don't get necessary items.
+    """
+
+    local_itempool: Optional[List[DarkSouls3Item]]
+    """The pool of all items within this particular world. This is a subset of
+    `self.multiworld.itempool`."""
 
 
     def __init__(self, multiworld: MultiWorld, player: int):
@@ -148,10 +156,9 @@ class DarkSouls3World(World):
 
         # Cemetery of Ash has very few locations and all of them are excluded by default, so only
         # allow Yhorm as Iudex Gundyr if there's at least one available location.
-        excluded = self.options.exclude_locations.value
         return any(
             self._is_location_available(location)
-            and location.name not in excluded
+            and location.name not in self.options.exclude_locations.value
             and location.name != "CA: Coiled Sword - boss drop"
             for location in location_tables["Cemetery of Ash"]
         )
@@ -269,7 +276,7 @@ class DarkSouls3World(World):
                 # Don't allow Siegward's Storm Ruler to mark Yhorm as defeatable.
                 if location.name == "PC: Storm Ruler - Siegward": continue
 
-                # Replace non-randomized items with events
+                # Replace non-randomized items with events that give the default item
                 event_item = (
                     self.create_item(location.default_item_name) if location.default_item_name
                     else DarkSouls3Item.event(location.name, self.player)
@@ -299,7 +306,7 @@ class DarkSouls3World(World):
         item_set: Set[str] = set()
 
         # Gather all default items on randomized locations
-        itempool: List[DarkSouls3Item] = []
+        self.local_itempool = []
         num_required_extra_items = 0
         for location in self.multiworld.get_unfilled_locations(self.player):
             if not self._is_location_available(location.name):
@@ -309,7 +316,7 @@ class DarkSouls3World(World):
             if item.skip:
                 num_required_extra_items += 1
             elif not item.unique:
-                itempool.append(self.create_item(location.data.default_item_name))
+                self.local_itempool.append(self.create_item(location.data.default_item_name))
             else:
                 # For unique items, make sure there aren't duplicates in the item set even if there
                 # are multiple in-game locations that provide them.
@@ -317,17 +324,17 @@ class DarkSouls3World(World):
                     num_required_extra_items += 1
                 else:
                     item_set.add(location.data.default_item_name)
-                    itempool.append(self.create_item(location.data.default_item_name))
+                    self.local_itempool.append(self.create_item(location.data.default_item_name))
 
         injectables = self._create_injectable_items(num_required_extra_items)
         num_required_extra_items -= len(injectables)
-        itempool.extend(injectables)
+        self.local_itempool.extend(injectables)
 
         # Extra filler items for locations containing skip items
-        itempool.extend(self.create_filler() for _ in range(num_required_extra_items))
+        self.local_itempool.extend(self.create_filler() for _ in range(num_required_extra_items))
 
         # Add items to itempool
-        self.multiworld.itempool += itempool
+        self.multiworld.itempool += self.local_itempool
 
         self._fill_local_items()
 
@@ -389,7 +396,7 @@ class DarkSouls3World(World):
     def create_item(self, item: Union[str, DS3ItemData]) -> Item:
         data = item if isinstance(item, DS3ItemData) else item_dictionary[item]
         classification = None
-        if self.multiworld and (
+        if self.multiworld and data.useful_if != UsefulIf.DEFAULT and (
             (
                 data.useful_if == UsefulIf.BASE and
                 not self.options.enable_dlc and
@@ -471,13 +478,7 @@ class DarkSouls3World(World):
 
         If the item could not be placed, it will be added to starting inventory.
         """
-        item = next(
-            (
-                item for item in self.multiworld.itempool
-                if item.player == self.player and item.name == name
-            ),
-            None
-        )
+        item = next((item for item in self.local_itempool if item.name == name), None)
         if not item: return
 
         candidate_locations = [
@@ -494,15 +495,32 @@ class DarkSouls3World(World):
             and location.item_rule(item)
         ]
 
+        self.multiworld.itempool.remove(item)
+        self.local_itempool.remove(item)
+
         if not candidate_locations:
             warning(f"Couldn't place \"{name}\" in a valid location for {self.multiworld.get_player_name(self.player)}. Adding it to starting inventory instead.")
+            location = next(
+                (location for location in self.multiworld.get_locations() if location.item == item),
+                None
+            )
+            if location: self._replace_with_filler(location)
             self.multiworld.push_precollected(self.create_item(name))
             return
 
         location = self.random.choice(candidate_locations)
         location.place_locked_item(item)
-        self.multiworld.itempool.remove(item)
-        
+
+    def _replace_with_filler(self, location: DarkSouls3Location) -> None:
+        """If possible, choose a filler item to replace location's current contents with."""
+        if location.locked: return
+
+        # Try 10 filler items. If none of them work, give up and leave it as-is.
+        for _ in range(0, 10):
+            candidate = self.create_filler()
+            if location.item_rule(candidate):
+                location.item = candidate
+                return
 
 
     def get_filler_item_name(self) -> str:
@@ -510,10 +528,7 @@ class DarkSouls3World(World):
 
 
     def set_rules(self) -> None:
-        randomized_items = {
-            item.name for item in self.multiworld.itempool
-            if item.player == self.player
-        }
+        randomized_items = {item.name for item in self.local_itempool}
 
         self._add_shop_rules()
         self._add_npc_rules()
@@ -1279,6 +1294,10 @@ class DarkSouls3World(World):
         """
         locations = location if type(location) is list else [location]
         for location in locations:
+            data = location_dictionary[location]
+            if data.dlc and not self.options.enable_dlc: return False
+            if data.ngp and not self.options.enable_ngp: return False
+
             if not self._is_location_available(location): return
             if isinstance(rule, str):
                 assert item_dictionary[rule].classification == ItemClassification.progression
@@ -1359,19 +1378,7 @@ class DarkSouls3World(World):
 
         state: CollectionState = CollectionState(self.multiworld)
         unchecked_locations = set(self.multiworld.get_locations())
-        locations_by_sphere: List[Set[Location]] = []
-
-        while len(unchecked_locations) > 0:
-            sphere_locations = {loc for loc in unchecked_locations if state.can_reach(loc)}
-            locations_by_sphere.append(self._shuffle(sorted(sphere_locations)))
-
-            old_length = len(unchecked_locations)
-            unchecked_locations.difference_update(sphere_locations)
-            if len(unchecked_locations) == old_length: break # Unreachable locations
-
-            state.sweep_for_events(key_only=True, locations=unchecked_locations)
-            for location in sphere_locations:
-                if location.event: state.collect(location.item, True, location)
+        locations_by_sphere = list(self.multiworld.get_spheres())
 
         # All items in the base game in approximately the order they appear
         all_item_order = [
@@ -1422,7 +1429,10 @@ class DarkSouls3World(World):
                 and loc.item.name in names
             ]
 
-            if len(item_order) != len(all_matching_locations):
+            # It's expected that there may be more total items than there are matching locations if
+            # the player has chosen a more limited accessibility option, since the matching
+            # locations *only* include items in the spheres of accessibility.
+            if len(item_order) < len(all_matching_locations):
                 raise Exception(
                     f"DS3 bug: there are {len(all_matching_locations)} locations that can " +
                     f"contain smoothed items, but only {len(item_order)} items to smooth."
