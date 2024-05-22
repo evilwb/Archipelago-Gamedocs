@@ -7,6 +7,7 @@
 * Mario Kart 64 - [0.2.1b](https://github.com/Edsploration/MK64-Archipelago/releases/tag/mk64%2F0.2.1b)
 * Mega Man X - [v0.1.4](https://github.com/TheLX5/Archipelago/releases/tag/mmx-v0.1.4)
 * Mega Man X3 - [v0.2.5](https://github.com/TheLX5/Archipelago/releases/tag/mmx3-v0.2.5)
+* Metroid Prime - [v0.0.3 ](https://github.com/Electro1512/MetroidAPrime/releases/tag/v0.0.3)
 * Paper Mario 64 - [v0.3.1](https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.3.1)
 * Risk of Rain - [v0.3](https://github.com/studkid/RoR_Archipelago/releases/tag/v0.3)
 * Super Metroid Map Rando - v103
