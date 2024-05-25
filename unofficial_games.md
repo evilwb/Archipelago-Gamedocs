@@ -1,6 +1,7 @@
 # Supported Unofficial Games
 
 * Castlevania: Symphony of the Night - [Beta 0.71](https://github.com/fdelduque/Archipelago/releases/tag/b071)
+* Civilization VI - [v0.2.3](https://github.com/hesto2/civilization_vi_apworld/releases/tag/v0.2.3)
 * Hades - [0.10.1](https://github.com/NaixGames/Polycosmos/releases/tag/0.10.1)
 * Inscryption - [v0.2.0b2](https://github.com/DrBibop/Archipelago_Inscryption/releases/tag/beta6)
 * Kingdom Hearts 1 Final Mix - [v1.0.0](https://github.com/gaithernOrg/KH1FM-AP/releases/tag/1.0.0)
