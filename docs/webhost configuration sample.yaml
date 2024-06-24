@@ -5,12 +5,6 @@
 # TODO
 #SELFHOST: true
 
-# Maximum concurrent world gens
-#GENERATORS: 8
-
-# TODO
-#SELFLAUNCH: true
-
 # TODO
 #DEBUG: false
 
@@ -27,20 +21,8 @@
 # If you wish to deploy, uncomment the following line and set it to something not easily guessable.
 # SECRET_KEY: "Your secret key here"
 
-# TODO
-#JOB_THRESHOLD: 2
-
 # waitress uses one thread for I/O, these are for processing of view that get sent
 #WAITRESS_THREADS: 10
-
-# Database provider details:
-#PONY:
-#  provider: "sqlite"
-#  filename: "ap.db3" # This MUST be the ABSOLUTE PATH to the file.
-#  create_db: true
-
-# Maximum number of players that are allowed to be rolled on the server. After this limit, one should roll locally and upload the results.
-#MAX_ROLL: 20
 
 # TODO
 #CACHE_TYPE: "simple"
