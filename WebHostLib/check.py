@@ -7,10 +7,20 @@ from flask import request, flash, redirect, url_for, render_template
 from markupsafe import Markup
 
 from WebHostLib import app
-from WebHostLib.upload import allowed_options, allowed_options_extensions, banned_file
 
 from Generate import roll_settings, PlandoOptions
 from Utils import parse_yamls
+
+banned_extensions = (".sfc", ".z64", ".n64", ".nes", ".smc", ".sms", ".gb", ".gbc", ".gba")
+allowed_options_extensions = (".yaml", ".json", ".yml", ".txt", ".zip")
+
+
+def allowed_options(filename: str) -> bool:
+    return filename.endswith(allowed_options_extensions)
+
+
+def banned_file(filename: str) -> bool:
+    return filename.endswith(banned_extensions)
 
 
 @app.route('/check', methods=['GET', 'POST'])

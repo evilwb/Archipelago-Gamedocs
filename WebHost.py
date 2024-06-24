@@ -24,7 +24,6 @@ if not os.path.exists(configpath):  # fall back to config.yaml in home
 
 def get_app() -> "Flask":
     from WebHostLib import register, cache, app as raw_app
-    from WebHostLib.models import db
 
     app = raw_app
     if os.path.exists(configpath) and not app.config["TESTING"]:
@@ -38,8 +37,6 @@ def get_app() -> "Flask":
 
     register()
     cache.init_app(app)
-    db.bind(**app.config["PONY"])
-    db.generate_mapping(create_tables=True)
     return app
 
 
@@ -120,33 +117,15 @@ if __name__ == "__main__":
     multiprocessing.set_start_method('spawn')
     logging.basicConfig(format='[%(asctime)s] %(message)s', level=logging.INFO)
 
-    from WebHostLib.lttpsprites import update_sprites_lttp
-    from WebHostLib.autolauncher import autohost, autogen, stop
     from WebHostLib.options import create as create_options_files
 
-    try:
-        update_sprites_lttp()
-    except Exception as e:
-        logging.exception(e)
-        logging.warning("Could not update LttP sprites.")
     app = get_app()
     create_options_files()
     create_ordered_tutorials_file()
-    if app.config["SELFLAUNCH"]:
-        autohost(app.config)
-    if app.config["SELFGEN"]:
-        autogen(app.config)
-    if app.config["SELFHOST"]:  # using WSGI, you just want to run get_app()
-        if app.config["DEBUG"]:
-            app.run(debug=True, port=app.config["PORT"])
-        else:
-            from waitress import serve
-            serve(app, port=app.config["PORT"], threads=app.config["WAITRESS_THREADS"])
+
+    if app.config["DEBUG"]:
+        app.run(debug=True, port=app.config["PORT"])
     else:
-        from time import sleep
-        try:
-            while True:
-                sleep(1)  # wait for process to be killed
-        except (SystemExit, KeyboardInterrupt):
-            pass
-    stop()  # stop worker threads
+        from waitress import serve
+        serve(app, port=app.config["PORT"], threads=app.config["WAITRESS_THREADS"])
+

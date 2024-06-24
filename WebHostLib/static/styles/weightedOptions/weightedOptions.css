@@ -95,7 +95,7 @@ html {
 }
 #weighted-options #weighted-options-button-row {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-between;
   margin-top: 15px;
 }

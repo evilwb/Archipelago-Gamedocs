@@ -22,10 +22,11 @@ html{
 #base-header #base-header-left{
     display: flex;
     flex-direction: row;
+    margin-top: 4px;
 }
 
 #base-header #base-header-left a{
-    margin-right: 0;
+    margin-right: 7;
     padding-right: 7px;
 }
 
