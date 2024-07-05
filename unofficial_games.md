@@ -1,5 +1,6 @@
 # Supported Unofficial Games
 
+* Balatro - [v0.1.2](https://github.com/BurndiL/BalatroAP/releases/tag/v0.1.2)
 * Castlevania: Symphony of the Night - [Beta 0.74](https://github.com/fdelduque/Archipelago/releases/tag/b074)
 * Civilization VI - [v0.4.3](https://github.com/hesto2/civilization_vi_apworld/releases/tag/v0.4.3)
 * Hades - [0.11.4](https://github.com/NaixGames/Polycosmos/releases/tag/0.11.4)
@@ -10,6 +11,7 @@
 * Mega Man X - [v1.2.0](https://github.com/TheLX5/Archipelago/releases/tag/mmx-v1.2.0)
 * Mega Man X3 - [v1.2.1](https://github.com/TheLX5/Archipelago/releases/tag/mmx3-v1.2.1)
 * Metroid Prime - [v0.2.1](https://github.com/Electro1512/MetroidAPrime/releases/tag/v0.2.1)
+* Metroid: Zero Mission - [0.1.0](https://github.com/lilDavid/Archipelago-Metroid-Zero-Mission/releases/tag/0.1.0)
 * Paper Mario 64 - [v0.3.2](https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.3.2)
 * Risk of Rain - [v0.4](https://github.com/studkid/RoR_Archipelago/releases/tag/v0.4)
 * TLoZ Wind Waker - [v2.4.0](https://github.com/tanjo3/tww_apworld/releases/tag/v2.4.0)
