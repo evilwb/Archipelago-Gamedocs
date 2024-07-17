@@ -2,6 +2,7 @@
 
 * Balatro - [v0.1.4](https://github.com/BurndiL/BalatroAP/releases/tag/v0.1.4)
 * Castlevania: Symphony of the Night - [Beta 0.74](https://github.com/fdelduque/Archipelago/releases/tag/b074)
+* Cave Story - [v0.4.1](https://github.com/kl3cks7r/Archipelago/releases/tag/v0.4.1)
 * Civilization VI - [v0.4.3](https://github.com/hesto2/civilization_vi_apworld/releases/tag/v0.4.3)
 * Hades - [0.12.0](https://github.com/NaixGames/Polycosmos/releases/tag/0.12.0)
 * Inscryption - [v0.3.0](https://github.com/DrBibop/Archipelago_Inscryption/releases/tag/beta7)
@@ -13,6 +14,7 @@
 * Metroid Prime - [v0.2.7](https://github.com/Electro1512/MetroidAPrime/releases/tag/v0.2.7)
 * Metroid: Zero Mission - [0.1.2](https://github.com/lilDavid/Archipelago-Metroid-Zero-Mission/releases/tag/0.1.2)
 * Paper Mario 64 - [v0.4.1](https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.4.0)
+* Pokemon FireRed and LeafGreen - [0.3.1](https://github.com/vyneras/Archipelago/releases/tag/0.3.1-alpha)
 * Risk of Rain - [v0.4](https://github.com/studkid/RoR_Archipelago/releases/tag/v0.4.1)
 * TLoZ Wind Waker - [v2.4.0](https://github.com/tanjo3/tww_apworld/releases/tag/v2.4.0)
 * Yu-Gi-Oh! Forbidden Memories - [v2.0.0](https://github.com/sg4e/Archipelago/releases/tag/v2.0.0)
