@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 
 from worlds.AutoWorld import AutoWorldRegister
 from . import app, cache
-from .models import uuid4
+from uuid import uuid4
 
 
 def get_world_theme(game_name: str):
