@@ -10,6 +10,7 @@
 * Kingdom Hearts 1 Final Mix - [v.2.3.4](https://github.com/gaithernOrg/KH1FM-AP/releases/tag/2.3.4)
 * Mario Kart 64 - [0.2.1b](https://github.com/Edsploration/MK64-Archipelago/releases/tag/mk64%2F0.2.1b)
 * Mega Man X - [v1.3.1](https://github.com/TheLX5/Archipelago/releases/tag/mmx-v1.3.1)
+* Mega Man X2 - [v1.0.1](https://github.com/TheLX5/Archipelago/releases/tag/mmx2-v1.0.1)
 * Mega Man X3 - [v1.3.1](https://github.com/TheLX5/Archipelago/releases/tag/mmx3-v1.3.1)
 * Metroid Prime - [v0.3.1](https://github.com/Electro1512/MetroidAPrime/releases/tag/v0.3.1)
 * Metroid: Zero Mission - [0.1.3](https://github.com/lilDavid/Archipelago-Metroid-Zero-Mission/releases/tag/0.1.3)
