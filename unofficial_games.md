@@ -16,7 +16,7 @@
 * Metroid: Zero Mission - [0.2.3](https://github.com/lilDavid/Archipelago-Metroid-Zero-Mission/releases/tag/0.2.3)
 * Paper Mario 64 - [v0.4.2](https://github.com/JKBSunshine/PMR_APWorld/releases/tag/v0.4.2)
 * Pokemon FireRed and LeafGreen - [0.7.3](https://github.com/vyneras/Archipelago/releases/tag/0.7.3-beta)
-* Ratchet & Clank 2 - [v0.3.1](https://github.com/evilwb/APRac2/releases/tag/v0.3.1)
+* Ratchet & Clank 2 - [v0.5.1](https://github.com/evilwb/APRac2/releases/tag/v0.5.1)
 * Risk of Rain - [v0.4.6](https://github.com/studkid/RoR_Archipelago/releases/tag/v0.4.6)
 * TLoZ Wind Waker - [v2.6.1](https://github.com/tanjo3/tww_apworld/releases/tag/v2.6.1)
 * Yu-Gi-Oh! Forbidden Memories - [v2.1.1](https://github.com/sg4e/Archipelago/releases/tag/v2.1.1)
